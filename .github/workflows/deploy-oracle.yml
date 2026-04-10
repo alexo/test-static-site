@@ -1,0 +1,32 @@
+name: Deploy to Oracle Cloud Object Storage
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install OCI CLI
+        run: |
+          pip install oci-cli
+
+      - name: Configure OCI CLI
+        run: |
+          mkdir -p ~/.oci
+          echo "${{ secrets.OCI_CONFIG }}" > ~/.oci/config
+          echo "${{ secrets.OCI_KEY }}" > ~/.oci/oci_api_key.pem
+          chmod 600 ~/.oci/oci_api_key.pem
+          chmod 600 ~/.oci/config
+
+      - name: Deploy to Object Storage
+        run: |
+          oci os object bulk-upload \
+            --bucket-name test-static-site \
+            --src-dir . \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --overwrite
