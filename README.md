@@ -210,36 +210,50 @@ This site is currently deployed on the following platforms:
 
 ### GitHub Pages
 - **URL**: https://alexo.github.io/test-static-site/
-- **Status**: Live
+- **Status**: Live ✓
 - **Deployed**: Fri Apr 10 2026
 - **Auto-deploy**: Enabled (on push to main branch)
+- **Auto-deploy Speed**: ~15 seconds
 
 ### Netlify
 - **URL**: https://gleaming-marigold-66e0c7.netlify.app
-- **Status**: Live
+- **Status**: Live ✓
 - **Site Name**: gleaming-marigold-66e0c7
 - **Deployed**: Fri Apr 10 2026
-- **Deploy Time**: 4.2 seconds
 - **Dashboard**: https://app.netlify.com/projects/gleaming-marigold-66e0c7
 - **Auto-deploy**: Enabled (connected to GitHub)
+- **Auto-deploy Speed**: < 10 seconds ⚡ (Fastest)
 
 ### Vercel
 - **URL**: https://test-static-site-six.vercel.app
-- **Status**: Live
+- **Status**: Live ✓
 - **Project Name**: test-static-site
 - **Deployed**: Fri Apr 10 2026
-- **Deploy Time**: 9 seconds
 - **Dashboard**: https://vercel.com/alexandru-objelean-s-projects/test-static-site
 - **Auto-deploy**: Enabled (connected to Git)
+- **Auto-deploy Speed**: < 10 seconds ⚡ (Fastest)
 
 ### Cloudflare Pages
 - **URL**: https://test-static-site.alex-objelean.workers.dev
-- **Status**: Live ✓ (Verified working)
+- **Status**: Live ✓
 - **Project Name**: test-static-site
 - **Deployed**: Fri Apr 10 2026
 - **Auto-deploy**: Enabled (connected to GitHub)
+- **Auto-deploy Speed**: ~15 seconds
 - **Features**: Unlimited bandwidth, global CDN
-- **Note**: Recreated with Git integration for automatic deployments
+
+## Auto-Deployment Performance
+
+All platforms support automatic deployment on git push to main branch. Tested deployment times:
+
+| Platform | Deployment Speed | Notes |
+|----------|-----------------|-------|
+| **Netlify** | < 10 seconds | 🥇 Fastest, excellent for rapid iteration |
+| **Vercel** | < 10 seconds | 🥇 Fastest, excellent for rapid iteration |
+| **GitHub Pages** | ~15 seconds | 🥈 Very fast, reliable |
+| **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
+
+**Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
 
 ## Testing Checklist
 
