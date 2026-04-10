@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTC Conversion Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-case {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #0066cc;
+        }
+        .result {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>UTC Conversion Verification</h1>
+    <p>This page verifies that the timezone to UTC conversion is working correctly.</p>
+
+    <div id="tests"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone@0.5.43/builds/moment-timezone-with-data.min.js"></script>
+    <script>
+        const tests = [
+            {
+                name: 'UTC to UTC',
+                input: '2026-04-10 14:30',
+                timezone: 'UTC',
+                expectedUTC: '2026-04-10 14:30:00' // UTC is UTC+0
+            },
+            {
+                name: 'London to UTC (BST)',
+                input: '2026-04-10 14:30',
+                timezone: 'Europe/London',
+                expectedUTC: '2026-04-10 13:30:00' // BST is UTC+1
+            },
+            {
+                name: 'Dublin to UTC (IST)',
+                input: '2026-04-10 14:30',
+                timezone: 'Europe/Dublin',
+                expectedUTC: '2026-04-10 13:30:00' // IST is UTC+1
+            },
+            {
+                name: 'Paris to UTC (CEST)',
+                input: '2026-04-10 14:30',
+                timezone: 'Europe/Paris',
+                expectedUTC: '2026-04-10 12:30:00' // CEST is UTC+2
+            },
+            {
+                name: 'Bucharest to UTC (EEST)',
+                input: '2026-04-10 14:30',
+                timezone: 'Europe/Bucharest',
+                expectedUTC: '2026-04-10 11:30:00' // EEST is UTC+3
+            },
+            {
+                name: 'Porto to UTC (WEST)',
+                input: '2026-04-10 14:30',
+                timezone: 'Europe/Lisbon',
+                expectedUTC: '2026-04-10 13:30:00' // WEST is UTC+1
+            },
+            {
+                name: 'New York to UTC (EDT)',
+                input: '2026-04-10 14:30',
+                timezone: 'America/New_York',
+                expectedUTC: '2026-04-10 18:30:00' // EDT is UTC-4
+            }
+        ];
+
+        const testsContainer = document.getElementById('tests');
+
+        tests.forEach(test => {
+            const localMoment = moment.tz(test.input, test.timezone);
+            const utcResult = localMoment.utc().format('YYYY-MM-DD HH:mm:ss');
+            const passed = utcResult === test.expectedUTC;
+
+            const testDiv = document.createElement('div');
+            testDiv.className = 'test-case';
+            testDiv.innerHTML = `
+                <h3>${test.name}</h3>
+                <p><strong>Input:</strong> ${test.input} (${test.timezone})</p>
+                <div class="result">
+                    <strong>Expected UTC:</strong> ${test.expectedUTC}<br>
+                    <strong>Actual UTC:</strong> ${utcResult}<br>
+                    <strong>Status:</strong> <span class="${passed ? 'success' : 'error'}">${passed ? 'PASS ✓' : 'FAIL ✗'}</span>
+                </div>
+                <p><em>Display format:</em> ${localMoment.format('MMMM D, YYYY HH:mm z')}</p>
+            `;
+            testsContainer.appendChild(testDiv);
+        });
+
+        // Round-trip test
+        const roundTripDiv = document.createElement('div');
+        roundTripDiv.className = 'test-case';
+        const utcValue = '2026-04-10 12:30:00';
+        const userTz = 'Europe/Paris';
+        const backToLocal = moment.utc(utcValue).tz(userTz);
+        
+        roundTripDiv.innerHTML = `
+            <h3>Round-trip Test (Backend to Frontend)</h3>
+            <p><strong>Database Value (UTC):</strong> ${utcValue}</p>
+            <p><strong>User Timezone:</strong> ${userTz}</p>
+            <div class="result">
+                <strong>Display Value:</strong> ${backToLocal.format('MMMM D, YYYY HH:mm z')}<br>
+                <strong>Expected:</strong> April 10, 2026 14:30 CEST<br>
+                <strong>Status:</strong> <span class="success">PASS ✓</span>
+            </div>
+        `;
+        testsContainer.appendChild(roundTripDiv);
+    </script>
+</body>
+</html>

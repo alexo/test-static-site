@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date-Time Widget with Timezone Selector Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-datepicker@4.8.0/dist/react-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="my-5">
+            <h1>Date-Time Widget with Timezone Selector</h1>
+            <p class="lead">Interactive demo showcasing the timezone-aware date picker component</p>
+        </header>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <section class="demo-section">
+                    <h2>Single Date Picker with Time</h2>
+                    <p>Select a date and time with timezone support</p>
+                    <div id="single-date-demo" class="demo-widget"></div>
+                </section>
+
+                <section class="demo-section">
+                    <h2>Date Range Picker</h2>
+                    <p>Select start and end dates with timezone</p>
+                    <div id="date-range-demo" class="demo-widget"></div>
+                </section>
+
+                <section class="demo-section">
+                    <h2>Time Bound Activation</h2>
+                    <p>Multiple date ranges with include/exclude operators</p>
+                    <div id="timebound-demo" class="demo-widget"></div>
+                </section>
+
+                <section class="demo-section">
+                    <h2>DST (Daylight Saving Time) Testing</h2>
+                    <p>Test how timezone conversions handle DST transitions</p>
+                    <div id="dst-demo" class="demo-widget">
+                        <div class="dst-test-controls">
+                            <button id="dst-test-summer" class="btn-test">Set Summer Date (PDT)</button>
+                            <button id="dst-test-winter" class="btn-test">Set Winter Date (PST)</button>
+                            <button id="dst-test-transition" class="btn-test">Set DST Transition</button>
+                        </div>
+                        <div id="dst-test-results" class="dst-results"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-lg-4">
+                <aside class="info-panel">
+                    <h3>Features</h3>
+                    <ul>
+                        <li><strong>Timezone Selection:</strong> Click the timezone label to change</li>
+                        <li><strong>Cookie Persistence:</strong> Selected timezone is saved for 365 days</li>
+                        <li><strong>UTC Conversion:</strong> Shows backend values with automatic DST handling</li>
+                        <li><strong>DST Awareness:</strong> Automatically accounts for Daylight Saving Time transitions</li>
+                        <li><strong>Default Values:</strong> Date-time fields populated with current time</li>
+                        <li><strong>Dynamic Updates:</strong> UTC values recalculate when timezone changes</li>
+                    </ul>
+
+                    <h3>Components Used</h3>
+                    <ul class="component-list">
+                        <li><code>TimezoneSelectorTooltip</code></li>
+                        <li><code>useTimezone</code> hook</li>
+                        <li><code>react-datepicker</code></li>
+                        <li><code>TimeBoundPicker</code></li>
+                    </ul>
+
+                    <h3>Current Selection</h3>
+                    <p class="text-muted small">UTC values show what will be persisted to the backend</p>
+                    <div id="current-values" class="current-values">
+                        <p><strong>Timezone:</strong> <span id="current-timezone">UTC</span></p>
+                        <p class="dst-info"><em>DST Status:</em> <span id="dst-status">-</span></p>
+                        <hr class="my-2">
+                        <div class="selection-group">
+                            <p class="mb-1"><strong>Single Date:</strong></p>
+                            <p class="local-time"><em>Local:</em> <span id="single-value">Not selected</span></p>
+                            <p class="utc-time"><em>UTC (Backend):</em> <span id="single-value-utc">-</span></p>
+                            <p class="utc-offset"><em>UTC Offset:</em> <span id="single-value-offset">-</span></p>
+                        </div>
+                        <hr class="my-2">
+                        <div class="selection-group">
+                            <p class="mb-1"><strong>Date Range:</strong></p>
+                            <p class="local-time"><em>Local:</em> <span id="range-value">Not selected</span></p>
+                            <p class="utc-time"><em>UTC (Backend):</em></p>
+                            <p class="utc-detail"><span id="range-start-utc">-</span></p>
+                            <p class="utc-detail"><span id="range-end-utc">-</span></p>
+                            <p class="utc-offset"><em>UTC Offsets:</em> <span id="range-offsets">-</span></p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <footer class="my-5">
+            <h3>Technical Details</h3>
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <h4>Backend Persistence (UTC Conversion)</h4>
+                    <p class="text-muted">All datetime values are converted to UTC before being sent to the backend. This ensures consistent storage regardless of user timezone selection.</p>
+                    <pre><code>// Frontend to Backend Conversion
+const userSelectedDate = '2026-04-10 14:30'; // User input in America/Los_Angeles
+const timezone = 'America/Los_Angeles';
+
+// Convert to UTC for backend persistence
+const utcDate = moment.tz(userSelectedDate, timezone).utc();
+const backendValue = utcDate.format('YYYY-MM-DD HH:mm:ss'); 
+// Result: '2026-04-10 22:30:00' (stored in database)
+
+// Backend to Frontend Display
+const dbValue = '2026-04-10 22:30:00'; // UTC from database
+const userTimezone = getUserTimezone(); // e.g., 'America/Los_Angeles'
+
+// Convert from UTC to user's timezone for display
+const localDate = moment.utc(dbValue).tz(userTimezone);
+const displayValue = localDate.format('MMMM D, YYYY HH:mm z');
+// Result: 'April 10, 2026 14:30 PDT'</code></pre>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Integration Pattern</h4>
+                    <pre><code>const { timezone, setTimezone, 
+        timezoneLabel, options } = 
+    useTimezone(timezoneOptions);
+
+&lt;TimezoneSelectorTooltip
+    timezone={timezone}
+    timezoneLabel={timezoneLabel}
+    options={options}
+    onTimezoneChange={setTimezone}&gt;
+    &lt;DatePicker ... /&gt;
+&lt;/TimezoneSelectorTooltip&gt;</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>Available Timezones</h4>
+                    <ul class="timezone-list" id="timezone-list"></ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-datepicker@4.8.0/dist/react-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone@0.5.43/builds/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>
