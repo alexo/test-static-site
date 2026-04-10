@@ -232,6 +232,15 @@ This site is currently deployed on the following platforms:
 - **Dashboard**: https://vercel.com/alexandru-objelean-s-projects/test-static-site
 - **Auto-deploy**: Enabled (connected to Git)
 
+### Cloudflare Pages
+- **URL**: https://test-static-site.alex-objelean.workers.dev
+- **Status**: Live ✓ (Verified working)
+- **Project Name**: test-static-site
+- **Deployed**: Fri Apr 10 2026
+- **Auto-deploy**: Enabled (connected to GitHub)
+- **Features**: Unlimited bandwidth, global CDN
+- **Note**: Recreated with Git integration for automatic deployments
+
 ## Testing Checklist
 
 After deployment, verify:

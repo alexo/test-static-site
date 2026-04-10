@@ -1,6 +1,12 @@
 # Netlify
 .netlify/
 
+# Vercel
+.vercel/
+
+# Cloudflare Wrangler
+.wrangler/
+
 # Node modules (if using npm/yarn for deployment tools)
 node_modules/
 
@@ -13,4 +19,3 @@ node_modules/
 *.swp
 *.swo
 *~
-.vercel
