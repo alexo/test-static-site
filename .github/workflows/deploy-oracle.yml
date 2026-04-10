@@ -24,9 +24,23 @@ jobs:
 
       - name: Deploy to Object Storage
         run: |
-          oci os object bulk-upload \
-            --bucket-name test-static-site \
-            --src-dir . \
-            --exclude ".git/*" \
-            --exclude ".github/*" \
-            --overwrite
+          for file in $(find . -type f ! -path './.git/*' ! -path './.github/*'); do
+            name="${file#./}"
+            case "$file" in
+              *.html) ct="text/html" ;;
+              *.css)  ct="text/css" ;;
+              *.js)   ct="application/javascript" ;;
+              *.json) ct="application/json" ;;
+              *.png)  ct="image/png" ;;
+              *.jpg|*.jpeg) ct="image/jpeg" ;;
+              *.svg)  ct="image/svg+xml" ;;
+              *.ico)  ct="image/x-icon" ;;
+              *)      ct="application/octet-stream" ;;
+            esac
+            oci os object put \
+              --bucket-name test-static-site \
+              --file "$file" \
+              --name "$name" \
+              --content-type "$ct" \
+              --force
+          done
