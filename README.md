@@ -257,7 +257,7 @@ This site is currently deployed on the following platforms:
 - **Bucket Name**: test-static-site
 - **Region**: eu-frankfurt-1
 - **Deployed**: Fri Apr 10 2026
-- **Auto-deploy**: Manual (OCI CLI bulk-upload)
+- **Auto-deploy**: Enabled (GitHub Actions → OCI CLI)
 - **Features**: Always Free Tier, 10 TB bandwidth/month, Object Storage
 
 ## Auto-Deployment Performance
@@ -271,7 +271,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **GitHub Pages** | ~15 seconds | 🥈 Very fast, reliable |
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
-| **Oracle Cloud** | Manual | No auto-deploy, uses OCI CLI bulk-upload |
+| **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
 
 **Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
 
