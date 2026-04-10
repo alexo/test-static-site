@@ -221,6 +221,16 @@ This site is currently deployed on the following platforms:
 - **Deployed**: Fri Apr 10 2026
 - **Deploy Time**: 4.2 seconds
 - **Dashboard**: https://app.netlify.com/projects/gleaming-marigold-66e0c7
+- **Auto-deploy**: Enabled (connected to GitHub)
+
+### Vercel
+- **URL**: https://test-static-site-six.vercel.app
+- **Status**: Live
+- **Project Name**: test-static-site
+- **Deployed**: Fri Apr 10 2026
+- **Deploy Time**: 9 seconds
+- **Dashboard**: https://vercel.com/alexandru-objelean-s-projects/test-static-site
+- **Auto-deploy**: Enabled (connected to Git)
 
 ## Testing Checklist
 
