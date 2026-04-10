@@ -75,6 +75,9 @@ class TimezoneManager {
 
 const timezoneManager = new TimezoneManager();
 
+// Store all display update functions to keep them in sync
+const displayUpdaters = [];
+
 // Timezone Selector Component
 class TimezoneSelectorTooltip {
     constructor(container, onTimezoneChange) {
@@ -84,6 +87,12 @@ class TimezoneSelectorTooltip {
         this.hideTimeout = null;
         this.render();
         this.attachEventListeners();
+        
+        // Subscribe to timezone changes from other selectors
+        this.unsubscribe = timezoneManager.subscribe((timezone) => {
+            this.updateLabel();
+            this.updateSelectedOption();
+        });
     }
 
     render() {
@@ -92,8 +101,26 @@ class TimezoneSelectorTooltip {
         
         const label = document.createElement('span');
         label.className = 'timezone-label';
-        label.textContent = timezoneManager.getTimezoneLabel();
+        label.title = timezoneManager.getTimezoneLabel(); // Tooltip
         label.id = 'timezone-label';
+        
+        // Add globe icon (using Unicode character)
+        const icon = document.createElement('span');
+        icon.className = 'timezone-icon';
+        icon.textContent = '🌐';
+        label.appendChild(icon);
+        
+        // Add timezone abbreviation (always visible, discrete font)
+        const abbr = document.createElement('span');
+        abbr.className = 'timezone-abbr';
+        abbr.textContent = this.getTimezoneAbbr();
+        label.appendChild(abbr);
+        
+        // Add timezone full text (hidden by default, shown on hover)
+        const text = document.createElement('span');
+        text.className = 'timezone-text';
+        text.textContent = timezoneManager.getTimezoneLabel();
+        label.appendChild(text);
         
         const dropdown = document.createElement('div');
         dropdown.className = 'timezone-dropdown hidden';
@@ -115,7 +142,19 @@ class TimezoneSelectorTooltip {
         this.container.insertBefore(wrapper, this.container.firstChild);
         
         this.labelElement = label;
+        this.abbrElement = abbr;
+        this.textElement = text;
         this.dropdownElement = dropdown;
+    }
+
+    getTimezoneAbbr() {
+        const tz = timezoneManager.getTimezone();
+        if (tz === 'UTC') {
+            return 'UTC';
+        }
+        // Get current moment in the timezone to determine abbreviation
+        const now = moment().tz(tz);
+        return now.format('z'); // Returns abbreviation like "CEST", "GMT", "EST"
     }
 
     attachEventListeners() {
@@ -161,7 +200,9 @@ class TimezoneSelectorTooltip {
     }
 
     updateLabel() {
-        this.labelElement.textContent = timezoneManager.getTimezoneLabel();
+        this.abbrElement.textContent = this.getTimezoneAbbr();
+        this.textElement.textContent = timezoneManager.getTimezoneLabel();
+        this.labelElement.title = timezoneManager.getTimezoneLabel();
     }
 
     updateSelectedOption() {
@@ -211,6 +252,9 @@ function initSingleDateDemo() {
             updateDSTStatus(localMoment);
         }
     }
+    
+    // Register this updater so it gets called when timezone changes from anywhere
+    displayUpdaters.push(updateSingleDateDisplay);
     
     new TimezoneSelectorTooltip(container, (timezone) => {
         updateCurrentTimezone();
@@ -287,6 +331,9 @@ function initDateRangeDemo() {
             updateDSTStatus(startMoment);
         }
     }
+    
+    // Register this updater so it gets called when timezone changes from anywhere
+    displayUpdaters.push(updateRangeDisplay);
     
     new TimezoneSelectorTooltip(container, (timezone) => {
         updateCurrentTimezone();
@@ -460,8 +507,16 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCurrentTimezone();
     populateTimezoneList();
     
-    // Subscribe to timezone changes
+    // Subscribe to timezone changes - update all displays when ANY timezone selector changes
     timezoneManager.subscribe((timezone) => {
         updateCurrentTimezone();
+        // Call all registered display updaters to keep everything in sync
+        displayUpdaters.forEach(updater => {
+            try {
+                updater();
+            } catch (e) {
+                console.error('Error updating display:', e);
+            }
+        });
     });
 });
