@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Deploy Test Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Static Site Deployment Test</h1>
+            <p class="subtitle">Successfully deployed and running!</p>
+        </header>
+
+        <main>
+            <section class="info-card">
+                <h2>Environment Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Current Time:</strong>
+                        <span id="current-time"></span>
+                    </div>
+                    <div class="info-item">
+                        <strong>User Agent:</strong>
+                        <span id="user-agent"></span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Screen Resolution:</strong>
+                        <span id="screen-res"></span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Page Load Time:</strong>
+                        <span id="load-time"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Test Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📊 Static Assets</h3>
+                        <p>HTML, CSS, and JavaScript files are served correctly</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎨 Responsive Design</h3>
+                        <p>Works on desktop, tablet, and mobile devices</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Fast Loading</h3>
+                        <p>Optimized for quick deployment and testing</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔧 Easy Deploy</h3>
+                        <p>Compatible with AWS, Azure, GCP, Netlify, Vercel, and more</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="interactive">
+                <h2>Interactive Test</h2>
+                <div class="counter-box">
+                    <p>Click Counter: <span id="counter">0</span></p>
+                    <button id="increment-btn">Increment</button>
+                    <button id="reset-btn">Reset</button>
+                </div>
+            </section>
+
+            <section class="deployment-status">
+                <h2>Deployment Status</h2>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>All systems operational</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Static Site Test | Ready for cloud deployment</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
