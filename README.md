@@ -242,6 +242,15 @@ This site is currently deployed on the following platforms:
 - **Auto-deploy Speed**: ~15 seconds
 - **Features**: Unlimited bandwidth, global CDN
 
+### Render
+- **URL**: https://test-static-site-zfsi.onrender.com
+- **Status**: Live ✓
+- **Service Name**: test-static-site-zfsi
+- **Deployed**: Fri Apr 10 2026
+- **Auto-deploy**: Enabled (connected to GitHub)
+- **Auto-deploy Speed**: Testing pending
+- **Features**: Free tier, automatic SSL, global CDN
+
 ## Auto-Deployment Performance
 
 All platforms support automatic deployment on git push to main branch. Tested deployment times:
@@ -252,6 +261,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Vercel** | < 10 seconds | 🥇 Fastest, excellent for rapid iteration |
 | **GitHub Pages** | ~15 seconds | 🥈 Very fast, reliable |
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
+| **Render** | Testing pending | Will be tested on next deployment |
 
 **Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
 
