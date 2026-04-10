@@ -204,6 +204,24 @@ git push -u origin main
 - **Small Business**: Netlify/Vercel paid tiers or AWS S3 (scalable)
 - **Enterprise**: AWS/GCP/Azure (integration with existing infrastructure)
 
+## Active Deployments
+
+This site is currently deployed on the following platforms:
+
+### GitHub Pages
+- **URL**: https://alexo.github.io/test-static-site/
+- **Status**: Live
+- **Deployed**: Fri Apr 10 2026
+- **Auto-deploy**: Enabled (on push to main branch)
+
+### Netlify
+- **URL**: https://gleaming-marigold-66e0c7.netlify.app
+- **Status**: Live
+- **Site Name**: gleaming-marigold-66e0c7
+- **Deployed**: Fri Apr 10 2026
+- **Deploy Time**: 4.2 seconds
+- **Dashboard**: https://app.netlify.com/projects/gleaming-marigold-66e0c7
+
 ## Testing Checklist
 
 After deployment, verify:

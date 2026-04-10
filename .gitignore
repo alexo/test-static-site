@@ -1,0 +1,15 @@
+# Netlify
+.netlify/
+
+# Node modules (if using npm/yarn for deployment tools)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
