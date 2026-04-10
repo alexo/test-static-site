@@ -140,6 +140,70 @@ git push -u origin main
 # 4. Deploy
 ```
 
+## Cost Comparison
+
+### Free Options (Best for small projects and testing)
+
+**GitHub Pages**
+- **Cost**: Free for public repositories
+- **Bandwidth**: Soft limit of 100GB/month
+- **Best for**: Open source projects, portfolios, documentation
+
+**Cloudflare Pages**
+- **Cost**: Free tier with unlimited bandwidth
+- **Builds**: 500 builds/month on free tier
+- **Best for**: Projects needing global CDN performance at no cost
+
+**Netlify (Free Tier)**
+- **Cost**: Free
+- **Bandwidth**: 100GB/month
+- **Builds**: 300 build minutes/month
+- **Best for**: Small to medium traffic sites
+
+**Vercel (Hobby Tier)**
+- **Cost**: Free
+- **Bandwidth**: 100GB/month
+- **Best for**: Personal projects, portfolios
+
+### Low-Cost Pay-As-You-Go
+
+**AWS S3 + CloudFront**
+- **Cost**: ~$0.50-2/month for small static sites
+- **Pricing**: Storage ($0.023/GB) + bandwidth ($0.085/GB for first 10TB)
+- **Best for**: Enterprise projects, existing AWS infrastructure
+
+**Google Cloud Storage**
+- **Cost**: ~$0.50-2/month for small static sites
+- **Pricing**: Similar to AWS
+- **Best for**: Existing GCP infrastructure
+
+### Paid Platform Options
+
+**Azure Static Web Apps**
+- **Free tier**: Available with limitations
+- **Standard**: $9/month
+- **Best for**: Microsoft ecosystem integration
+
+**DigitalOcean App Platform**
+- **Static sites**: Free tier available
+- **Starter**: $5/month for enhanced features
+- **Best for**: Simple deployment with predictable pricing
+
+### Cost Factors to Consider
+
+- **Traffic volume**: Higher traffic increases bandwidth costs
+- **Build frequency**: Some platforms charge per build
+- **Geographic distribution**: CDN usage affects costs
+- **SSL certificates**: Usually included free with modern providers
+- **Custom domains**: Typically free to configure
+
+### Recommendation by Use Case
+
+- **Testing/Learning**: GitHub Pages or Cloudflare Pages (free, unlimited)
+- **Personal Portfolio**: Netlify or Vercel (free tier sufficient)
+- **Small Business**: Netlify/Vercel paid tiers or AWS S3 (scalable)
+- **Enterprise**: AWS/GCP/Azure (integration with existing infrastructure)
+
 ## Testing Checklist
 
 After deployment, verify:
