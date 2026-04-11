@@ -251,6 +251,15 @@ This site is currently deployed on the following platforms:
 - **Auto-deploy Speed**: ~15 seconds
 - **Features**: Free tier, automatic SSL, global CDN
 
+### AWS S3 + CloudFront
+- **URL**: http://test-static-site.s3-website-us-east-1.amazonaws.com
+- **Status**: Live ✓
+- **Bucket Name**: test-static-site
+- **Region**: us-east-1
+- **Deployed**: Sat Apr 11 2026
+- **Auto-deploy**: Enabled (GitHub Actions → AWS CLI)
+- **Features**: S3 static hosting, optional CloudFront CDN invalidation
+
 ### Oracle Cloud Object Storage
 - **URL**: https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/frrmkmtvztrf/b/test-static-site/o/index.html
 - **Status**: Live ✓
@@ -272,6 +281,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
 | **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
+| **AWS S3** | ~30 seconds | GitHub Actions workflow, AWS CLI sync |
 
 **Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
 
