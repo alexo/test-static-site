@@ -51,24 +51,6 @@
 
             <div class="col-lg-4">
                 <aside class="info-panel">
-                    <h3>Features</h3>
-                    <ul>
-                        <li><strong>Timezone Selection:</strong> Click the timezone label to change</li>
-                        <li><strong>Cookie Persistence:</strong> Selected timezone is saved for 365 days</li>
-                        <li><strong>UTC Conversion:</strong> Shows backend values with automatic DST handling</li>
-                        <li><strong>DST Awareness:</strong> Automatically accounts for Daylight Saving Time transitions</li>
-                        <li><strong>Default Values:</strong> Date-time fields populated with current time</li>
-                        <li><strong>Dynamic Updates:</strong> UTC values recalculate when timezone changes</li>
-                    </ul>
-
-                    <h3>Components Used</h3>
-                    <ul class="component-list">
-                        <li><code>TimezoneSelectorTooltip</code></li>
-                        <li><code>useTimezone</code> hook</li>
-                        <li><code>react-datepicker</code></li>
-                        <li><code>TimeBoundPicker</code></li>
-                    </ul>
-
                     <h3>Current Selection</h3>
                     <p class="text-muted small">UTC values show what will be persisted to the backend</p>
                     <div id="current-values" class="current-values">
@@ -91,6 +73,24 @@
                             <p class="utc-offset"><em>UTC Offsets:</em> <span id="range-offsets">-</span></p>
                         </div>
                     </div>
+
+                    <h3>Features</h3>
+                    <ul>
+                        <li><strong>Timezone Selection:</strong> Click the timezone label to change</li>
+                        <li><strong>Cookie Persistence:</strong> Selected timezone is saved for 365 days</li>
+                        <li><strong>UTC Conversion:</strong> Shows backend values with automatic DST handling</li>
+                        <li><strong>DST Awareness:</strong> Automatically accounts for Daylight Saving Time transitions</li>
+                        <li><strong>Default Values:</strong> Date-time fields populated with current time</li>
+                        <li><strong>Dynamic Updates:</strong> UTC values recalculate when timezone changes</li>
+                    </ul>
+
+                    <h3>Components Used</h3>
+                    <ul class="component-list">
+                        <li><code>TimezoneSelectorTooltip</code></li>
+                        <li><code>useTimezone</code> hook</li>
+                        <li><code>react-datepicker</code></li>
+                        <li><code>TimeBoundPicker</code></li>
+                    </ul>
                 </aside>
             </div>
         </div>
