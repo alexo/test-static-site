@@ -36,21 +36,6 @@ Then visit `http://localhost:8000`
 
 ## Deployment Instructions
 
-### AWS S3 + CloudFront
-
-```bash
-# Create S3 bucket
-aws s3 mb s3://your-bucket-name
-
-# Upload files
-aws s3 sync . s3://your-bucket-name --exclude ".git/*"
-
-# Enable static website hosting
-aws s3 website s3://your-bucket-name --index-document index.html
-
-# Make bucket public (update bucket policy)
-```
-
 ### Azure Static Web Apps
 
 ```bash
@@ -167,11 +152,6 @@ git push -u origin main
 
 ### Low-Cost Pay-As-You-Go
 
-**AWS S3 + CloudFront**
-- **Cost**: ~$0.50-2/month for small static sites
-- **Pricing**: Storage ($0.023/GB) + bandwidth ($0.085/GB for first 10TB)
-- **Best for**: Enterprise projects, existing AWS infrastructure
-
 **Google Cloud Storage**
 - **Cost**: ~$0.50-2/month for small static sites
 - **Pricing**: Similar to AWS
@@ -201,12 +181,20 @@ git push -u origin main
 
 - **Testing/Learning**: GitHub Pages or Cloudflare Pages (free, unlimited)
 - **Personal Portfolio**: Netlify or Vercel (free tier sufficient)
-- **Small Business**: Netlify/Vercel paid tiers or AWS S3 (scalable)
+- **Small Business**: Netlify/Vercel paid tiers or Azure Static Web Apps (scalable)
 - **Enterprise**: AWS/GCP/Azure (integration with existing infrastructure)
 
 ## Active Deployments
 
 This site is currently deployed on the following platforms:
+
+### Azure Static Web Apps
+- **URL**: https://blue-tree-00ba0ac03.2.azurestaticapps.net
+- **Status**: Live ✓
+- **Resource Name**: test-static-site
+- **Deployed**: Sat Apr 11 2026
+- **Auto-deploy**: Enabled (GitHub Actions → Azure Static Web Apps)
+- **Features**: Free tier, global CDN, automatic SSL
 
 ### GitHub Pages
 - **URL**: https://alexo.github.io/test-static-site/
@@ -251,15 +239,6 @@ This site is currently deployed on the following platforms:
 - **Auto-deploy Speed**: ~15 seconds
 - **Features**: Free tier, automatic SSL, global CDN
 
-### AWS S3 + CloudFront
-- **URL**: http://test-static-site.s3-website-us-east-1.amazonaws.com
-- **Status**: Live ✓
-- **Bucket Name**: test-static-site
-- **Region**: us-east-1
-- **Deployed**: Sat Apr 11 2026
-- **Auto-deploy**: Enabled (GitHub Actions → AWS CLI)
-- **Features**: S3 static hosting, optional CloudFront CDN invalidation
-
 ### Oracle Cloud Object Storage
 - **URL**: https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/frrmkmtvztrf/b/test-static-site/o/index.html
 - **Status**: Live ✓
@@ -281,7 +260,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
 | **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
-| **AWS S3** | ~30 seconds | GitHub Actions workflow, AWS CLI sync |
+| **Azure Static Web Apps** | ~30 seconds | GitHub Actions workflow, Azure SWA action |
 
 **Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
 
