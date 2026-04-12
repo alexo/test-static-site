@@ -15,10 +15,10 @@ jobs:
 
       - uses: denoland/setup-deno@v2
 
+      - name: Install deployctl
+        run: deno install -gArf jsr:@deno/deployctl
+
       - name: Deploy to Deno Deploy
-        uses: denoland/deployctl@v1
-        with:
-          project: alexo/test-static-site
-          entrypoint: server.ts
+        run: deployctl deploy --project=alexo/test-static-site server.ts
         env:
           DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
