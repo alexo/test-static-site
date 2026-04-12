@@ -188,6 +188,14 @@ git push -u origin main
 
 This site is currently deployed on the following platforms:
 
+### Firebase Hosting
+- **URL**: https://test-static-site-e6623.web.app
+- **Status**: Live ✓
+- **Project Name**: test-static-site-e6623
+- **Deployed**: Sun Apr 12 2026
+- **Auto-deploy**: Enabled (GitHub Actions → Firebase Hosting)
+- **Features**: Free tier, global CDN, automatic SSL
+
 ### Azure Static Web Apps
 - **URL**: https://blue-tree-00ba0ac03.2.azurestaticapps.net
 - **Status**: Live ✓
@@ -260,6 +268,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
 | **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
+| **Firebase Hosting** | ~35 seconds | GitHub Actions workflow, Firebase service account |
 | **Azure Static Web Apps** | ~30 seconds | GitHub Actions workflow, Azure SWA action |
 
 **Test Methodology**: Deployment times measured from git push to when changes are live on the production URL. All platforms completed deployment in under 20 seconds for this simple static site.
