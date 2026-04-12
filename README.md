@@ -188,6 +188,13 @@ git push -u origin main
 
 This site is currently deployed on the following platforms:
 
+### Surge.sh
+- **URL**: https://test-static-site.surge.sh
+- **Status**: Live ✓
+- **Deployed**: Sun Apr 12 2026
+- **Auto-deploy**: Enabled (GitHub Actions → Surge CLI)
+- **Features**: Free tier, automatic SSL, custom domains
+
 ### Firebase Hosting
 - **URL**: https://test-static-site-e6623.web.app
 - **Status**: Live ✓
@@ -268,6 +275,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
 | **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
+| **Surge.sh** | ~20 seconds | GitHub Actions workflow, Surge CLI |
 | **Firebase Hosting** | ~35 seconds | GitHub Actions workflow, Firebase service account |
 | **Azure Static Web Apps** | ~30 seconds | GitHub Actions workflow, Azure SWA action |
 
