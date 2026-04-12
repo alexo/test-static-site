@@ -195,6 +195,14 @@ This site is currently deployed on the following platforms:
 - **Auto-deploy**: Enabled (GitHub Actions → Surge CLI)
 - **Features**: Free tier, automatic SSL, custom domains
 
+### Deno Deploy
+- **URL**: https://test-static-site-me10jacr08sm.alexo.deno.net
+- **Status**: Live ✓
+- **Project Name**: alexo/test-static-site
+- **Deployed**: Sun Apr 12 2026
+- **Auto-deploy**: Enabled (GitHub integration, entrypoint: server.ts)
+- **Features**: Edge-native, global deployment, Deno runtime
+
 ### Firebase Hosting
 - **URL**: https://test-static-site-e6623.web.app
 - **Status**: Live ✓
@@ -275,6 +283,7 @@ All platforms support automatic deployment on git push to main branch. Tested de
 | **Cloudflare Pages** | ~15 seconds | 🥈 Very fast, unlimited bandwidth |
 | **Render** | ~15 seconds | 🥈 Very fast, free tier with SSL |
 | **Oracle Cloud** | ~30 seconds | GitHub Actions workflow, OCI CLI upload |
+| **Deno Deploy** | ~30 seconds | GitHub integration, Deno static file server |
 | **Surge.sh** | ~20 seconds | GitHub Actions workflow, Surge CLI |
 | **Firebase Hosting** | ~35 seconds | GitHub Actions workflow, Firebase service account |
 | **Azure Static Web Apps** | ~30 seconds | GitHub Actions workflow, Azure SWA action |

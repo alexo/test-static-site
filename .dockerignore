@@ -1,0 +1,7 @@
+.git
+.github
+.netlify
+.vercel
+.wrangler
+.firebaserc
+node_modules
