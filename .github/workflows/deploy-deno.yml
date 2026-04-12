@@ -20,4 +20,5 @@ jobs:
         with:
           project: test-static-site
           entrypoint: server.ts
-          token: ${{ secrets.DENO_DEPLOY_TOKEN }}
+        env:
+          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
